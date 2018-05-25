@@ -1,18 +1,9 @@
 from django.shortcuts import HttpResponse
 from django.shortcuts import render
+from django.template import loader
 
 # Create your views here.
 def main_page(request):
-    output = '''
-    <html>
-    <head><title>%s</title></head>
-    <body>
-    <h1>%s</h1>
-    <p>%s</p>
-    </body>
-    </html>''' % (
-        'Django Bookmarks',
-        'Welcome to Django Bookmarks',
-        'Where you can store add share bookmarks!')
+    template = loader.get_template('bookmarks/main_page.html')
 
-    return HttpResponse(output)
+    return HttpResponse(template.render({} , request))
